@@ -2,7 +2,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>env-utils</groupId>
+	<groupId>cz.sysnet.utils</groupId>
 	<artifactId>env-utils</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Nástroje pro práci se systémovým prostředím</name>
@@ -27,6 +27,12 @@
 			</plugin>
 		</plugins>
 	</build>
+	<distributionManagement>
+		<repository>
+			<id>internal</id>
+			<url>file://${project.build.directory}/mvn-repo</url>
+		</repository>
+	</distributionManagement>	
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
@@ -37,4 +43,5 @@
 		</dependency>
 
 	</dependencies>
+	<description>Nástroje pro čtení systémových proměnných</description>
 </project>
