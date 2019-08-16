@@ -7,23 +7,33 @@ import java.util.Map;
 
 public class EnvUtils {
 
-	
 	public static String getEnvString(String variableName) {
-		String out = "";
+		return getEnvString(variableName, "");
+	}
+	
+	public static String getEnvString(String variableName, String defaultValue) {
+		String d = defaultValue;
+		String out = d;
 		try {
 			out = System.getenv(variableName);
-			if (out == null) out = "";
+			if (out == null) out = d;
 	
 		} catch (Exception e) {
 			System.out.println("EnvUtils.getEnvString: " + e.getMessage());
 			e.printStackTrace();
-			out = "";
+			out = d;
 		}
 		return out;		
 	}
 	
+	
 	public static int getEnvInteger(String variableName) {
-		int out = 0;
+		return getEnvInteger(variableName, 0);
+	}
+	
+	public static int getEnvInteger(String variableName, int defaultValue) {
+		int d = defaultValue;
+		int out = d;
 		String s = getEnvString(variableName);
 		if (s.isEmpty()) return out;
 		try {
@@ -32,13 +42,18 @@ public class EnvUtils {
 		} catch (Exception e) {
 			System.out.println("EnvUtils.getEnvInteger: " + e.getMessage());
 			e.printStackTrace();
-			out = 0;
+			out = d;
 		}
 		return out;
 	}
 	
 	public static long getEnvLong(String variableName) {
-		long out = 0;
+		return getEnvLong(variableName, 0);
+	}
+	
+	public static long getEnvLong(String variableName, long defaultValue) {
+		long d = defaultValue;
+		long out = d;
 		String s = getEnvString(variableName);
 		if (s.isEmpty()) return out;
 		try {
@@ -47,7 +62,7 @@ public class EnvUtils {
 		} catch (Exception e) {
 			System.out.println("EnvUtils.getEnvInteger: " + e.getMessage());
 			e.printStackTrace();
-			out = 0;
+			out = d;
 		}
 		return out;
 	}
@@ -69,7 +84,12 @@ public class EnvUtils {
 	}
 	
 	public static float getEnvFloat(String variableName) {
-		float out = 0;
+		return getEnvFloat(variableName, 0);
+	}
+	
+	public static float getEnvFloat(String variableName, float defaultValue) {
+		float d = defaultValue;
+		float out = d;
 		String s = getEnvString(variableName);
 		if (s.isEmpty()) return out;
 		try {
@@ -78,13 +98,18 @@ public class EnvUtils {
 		} catch (Exception e) {
 			System.out.println("EnvUtils.getEnvFloat: " + e.getMessage());
 			e.printStackTrace();
-			out = 0;
+			out = d;
 		}
 		return out;
 	}
 	
 	public static double getEnvDouble(String variableName) {
-		double out = 0;
+		return getEnvDouble(variableName, 0);
+	}
+	
+	public static double getEnvDouble(String variableName, double defaultValue) {
+		double d = defaultValue;
+		double out = d;
 		String s = getEnvString(variableName);
 		if (s.isEmpty()) return out;
 		try {
@@ -93,7 +118,7 @@ public class EnvUtils {
 		} catch (Exception e) {
 			System.out.println("EnvUtils.getEnvDouble: " + e.getMessage());
 			e.printStackTrace();
-			out = 0;
+			out = d;
 		}
 		return out;
 	}

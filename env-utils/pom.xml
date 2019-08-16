@@ -4,7 +4,6 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>cz.sysnet.utils</groupId>
 	<artifactId>env-utils</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>Nástroje pro práci se systémovým prostředím</name>
 	<organization>
 		<name>SYSNET s.r.o.</name>
@@ -44,4 +43,5 @@
 
 	</dependencies>
 	<description>Nástroje pro čtení systémových proměnných</description>
+	<version>0.0.2</version>
 </project>
