@@ -66,10 +66,13 @@ public class EnvUtils {
 		}
 		return out;
 	}
-
 	
 	public static boolean getEnvBoolean(String variableName) {
-		boolean out = false;
+		return getEnvBoolean(variableName, false);
+	}
+
+	public static boolean getEnvBoolean(String variableName, boolean defaultValue) {
+		boolean out = defaultValue;
 		String s = getEnvString(variableName);
 		if (s.isEmpty()) return out;
 		try {
@@ -128,12 +131,23 @@ public class EnvUtils {
 	}
 	
 	public static List<String> getEnvList(String variableName) {
-		return getEnvList(variableName, null);
-	}		
+		return getEnvList(variableName, null, null);
+	}
+	
+	public static List<String> getEnvList(String variableName, List<String> defaultValue) {
+		return getEnvList(variableName, null, defaultValue);
+	}
 	
 	public static List<String> getEnvList(String variableName, String delimiter) {
+		return getEnvList(variableName, delimiter, null);
+	}
+
+	public static List<String> getEnvList(String variableName, String delimiter, List<String> defaultValue) {
 		String env = getEnvString(variableName);
-		return parseStringToList(env, delimiter);
+		List<String> out = parseStringToList(env, delimiter);
+		if (out == null) out = defaultValue;
+		if (out == null) out = new ArrayList<String>();
+		return out;
 	}
 	
 	public static List<String> parseStringToList(String source) {
@@ -144,11 +158,14 @@ public class EnvUtils {
 		List<String> out = new ArrayList<String>();
 		String d = ":";
 		try {
+			if (source == null) return null; 
 			if (delimiter != null) if (!delimiter.isEmpty()) d = delimiter;
 			if(!source.isEmpty()) {
 				String[] a = source.split(d);
 				out = Arrays.asList(a);				
-			}					
+			} else {
+				return null;
+			}
 		} catch (Exception e) {
 			System.out.println("EnvUtils.parseStringToList: " + e.getMessage());
 			e.printStackTrace();
@@ -159,11 +176,23 @@ public class EnvUtils {
 	}
 	
 	public static Map<String, String> getEnvMap(String variableName) {
-		return getEnvMap(variableName, null);
+		return getEnvMap(variableName, null, null);
+	}
+	
+	public static Map<String, String> getEnvMap(String variableName, Map<String, String> defaultValue) {
+		return getEnvMap(variableName, null, defaultValue);
 	}
 	
 	public static Map<String, String> getEnvMap(String variableName, String delimiter) {
+		return getEnvMap(variableName, delimiter, null);
+	}
+	
+	public static Map<String, String> getEnvMap(String variableName, String delimiter, Map<String, String> defaultValue) {
+		Map<String, String> out = defaultValue;
+		if (out == null) out = new HashMap<String, String>(); 
 		String env = getEnvString(variableName);
+		if (env == null) return out;
+		if (env.isEmpty()) return out;		
 		return parseStringToMap(env, delimiter);
 	}
 	
